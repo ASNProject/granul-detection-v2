@@ -25,7 +25,7 @@ Deskripsi singkat tentang proyek ini.
 ## ⚙️ Installation & 🚀 Usage 
 - Clone Project
 ```
-git clone https://github.com/username/project_name.git
+git clone https://github.com/ASNProject/granul-detection-v2.git
 ```
 - Buka Project
 ```
@@ -36,8 +36,8 @@ cd project_name
 pip install -r requirements.txt
 ```
 - Run Project
-```p
-ython main.py
+```
+python main.py
 ```
 
 
