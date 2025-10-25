@@ -24,12 +24,12 @@ JSON_FILE = os.path.join(ASSETS_FOLDER, constants.SETTING_FILE)
 class HSVFilterController:
     def __init__(self):
         self.hsv_values = {
-            "h_min": 0,
-            "h_max": 179,
-            "s_min": 0,
-            "s_max": 255,
-            "v_min": 0,
-            "v_max": 255,
+            constants.H_MIN: 0,
+            constants.H_MAX: 179,
+            constants.S_MIN: 0,
+            constants.S_MAX: 255,
+            constants.V_MIN: 0,
+            constants.V_MAX: 255,
         }
         self.load_from_json()
 
@@ -41,12 +41,12 @@ class HSVFilterController:
             with open(JSON_FILE, "r") as f:
                 data = json.load(f)
             self.hsv_values = {
-                "h_min": data.get("H_MIN", 0),
-                "h_max": data.get("H_MAX", 179),
-                "s_min": data.get("S_MIN", 0),
-                "s_max": data.get("S_MAX", 255),
-                "v_min": data.get("V_MIN", 0),
-                "v_max": data.get("V_MAX", 255),
+                constants.H_MIN: data.get("H_MIN", 0),
+                constants.H_MAX: data.get("H_MAX", 179),
+                constants.S_MIN: data.get("S_MIN", 0),
+                constants.S_MAX: data.get("S_MAX", 255),
+                constants.V_MIN: data.get("V_MIN", 0),
+                constants.V_MAX: data.get("V_MAX", 255),
             }
         except Exception as e:
             print(f"[WARN] Gagal load HSV dari JSON: {e}")
@@ -58,12 +58,12 @@ class HSVFilterController:
                 data = json.load(f)
 
             data.update({
-                "H_MIN": self.hsv_values["h_min"],
-                "H_MAX": self.hsv_values["h_max"],
-                "S_MIN": self.hsv_values["s_min"],
-                "S_MAX": self.hsv_values["s_max"],
-                "V_MIN": self.hsv_values["v_min"],
-                "V_MAX": self.hsv_values["v_max"],
+                "H_MIN": self.hsv_values[constants.H_MIN],
+                "H_MAX": self.hsv_values[constants.H_MAX],
+                "S_MIN": self.hsv_values[constants.S_MIN],
+                "S_MAX": self.hsv_values[constants.S_MAX],
+                "V_MIN": self.hsv_values[constants.V_MIN],
+                "V_MAX": self.hsv_values[constants.V_MAX],
             })
 
             with open(JSON_FILE, "w") as f:
@@ -84,14 +84,14 @@ class HSVFilterController:
             return None
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         lower = (
-            self.hsv_values["h_min"],
-            self.hsv_values["s_min"],
-            self.hsv_values["v_min"],
+            self.hsv_values[constants.H_MIN],
+            self.hsv_values[constants.S_MIN],
+            self.hsv_values[constants.V_MIN],
         )
         upper = (
-            self.hsv_values["h_max"],
-            self.hsv_values["s_max"],
-            self.hsv_values["v_max"],
+            self.hsv_values[constants.H_MAX],
+            self.hsv_values[constants.S_MAX],
+            self.hsv_values[constants.V_MAX],
         )
         mask = cv2.inRange(hsv, lower, upper)
         result = cv2.bitwise_and(frame, frame, mask=mask)

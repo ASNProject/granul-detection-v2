@@ -44,3 +44,18 @@ FILE_NAME = "Nama File"
 
 # Utils
 EXCEL_FORMAT = "*.xlsx"
+
+# HSV
+HORIZONTAL = "horizontal"
+H_MIN = "h_min"
+H_MAX = "h_max"
+S_MIN = "s_min"
+S_MAX = "s_max"
+V_MIN = "v_min"
+V_MAX = "v_max"
+HUE_MIN="Hue Min"
+HUE_MAX="Hue Max"
+SATURATION_MIN="Saturation Min"
+SATURATION_MAX="Saturation Max"
+VALUE_MIN="Value Min"
+VALUE_MAX="Value Max"

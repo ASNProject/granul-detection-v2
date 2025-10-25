@@ -93,12 +93,12 @@ class SettingsPage(tk.Frame):
             utils.save_json(update_data)
             # Simpan juga HSV terbaru
             hsv_values = {
-                "h_min": self.h_min.get(),
-                "h_max": self.h_max.get(),
-                "s_min": self.s_min.get(),
-                "s_max": self.s_max.get(),
-                "v_min": self.v_min.get(),
-                "v_max": self.v_max.get(),
+                constants.H_MIN: self.h_min.get(),
+                constants.H_MAX: self.h_max.get(),
+                constants.S_MIN: self.s_min.get(),
+                constants.S_MAX: self.s_max.get(),
+                constants.V_MIN: self.v_min.get(),
+                constants.V_MAX: self.v_max.get(),
             }
             self.hsv_controller.update_hsv(hsv_values, auto_save=True)
             messagebox.showinfo("Sukses", "Data berhasil disimpan!")
@@ -140,20 +140,20 @@ class SettingsPage(tk.Frame):
 
         hsv = self.hsv_controller.hsv_values  # ambil dari JSON
 
-        self.h_min = tk.Scale(hsv_frame, from_=0, to=179, orient="horizontal", label="Hue Min", command=self.update_hsv)
-        self.h_max = tk.Scale(hsv_frame, from_=0, to=179, orient="horizontal", label="Hue Max", command=self.update_hsv)
-        self.s_min = tk.Scale(hsv_frame, from_=0, to=255, orient="horizontal", label="Saturation Min", command=self.update_hsv)
-        self.s_max = tk.Scale(hsv_frame, from_=0, to=255, orient="horizontal", label="Saturation Max", command=self.update_hsv)
-        self.v_min = tk.Scale(hsv_frame, from_=0, to=255, orient="horizontal", label="Value Min", command=self.update_hsv)
-        self.v_max = tk.Scale(hsv_frame, from_=0, to=255, orient="horizontal", label="Value Max", command=self.update_hsv)
+        self.h_min = tk.Scale(hsv_frame, from_=0, to=179, orient=constants.HORIZONTAL, label=constants.HUE_MIN, command=self.update_hsv)
+        self.h_max = tk.Scale(hsv_frame, from_=0, to=179, orient=constants.HORIZONTAL, label=constants.HUE_MAX, command=self.update_hsv)
+        self.s_min = tk.Scale(hsv_frame, from_=0, to=255, orient=constants.HORIZONTAL, label=constants.SATURATION_MIN, command=self.update_hsv)
+        self.s_max = tk.Scale(hsv_frame, from_=0, to=255, orient=constants.HORIZONTAL, label=constants.SATURATION_MAX, command=self.update_hsv)
+        self.v_min = tk.Scale(hsv_frame, from_=0, to=255, orient=constants.HORIZONTAL, label=constants.VALUE_MIN, command=self.update_hsv)
+        self.v_max = tk.Scale(hsv_frame, from_=0, to=255, orient=constants.HORIZONTAL, label=constants.VALUE_MAX, command=self.update_hsv)
 
         # Set nilai awal dari JSON
-        self.h_min.set(hsv["h_min"])
-        self.h_max.set(hsv["h_max"])
-        self.s_min.set(hsv["s_min"])
-        self.s_max.set(hsv["s_max"])
-        self.v_min.set(hsv["v_min"])
-        self.v_max.set(hsv["v_max"])
+        self.h_min.set(hsv[constants.H_MIN])
+        self.h_max.set(hsv[constants.H_MAX])
+        self.s_min.set(hsv[constants.S_MIN])
+        self.s_max.set(hsv[constants.S_MAX])
+        self.v_min.set(hsv[constants.V_MIN])
+        self.v_max.set(hsv[constants.V_MAX])
 
         # Layout grid
         self.h_min.grid(row=0, column=0, sticky="ew", pady=2, padx=5)
@@ -174,12 +174,12 @@ class SettingsPage(tk.Frame):
 
     def _apply_hsv_values(self):
         hsv_values = {
-            "h_min": self.h_min.get(),
-            "h_max": self.h_max.get(),
-            "s_min": self.s_min.get(),
-            "s_max": self.s_max.get(),
-            "v_min": self.v_min.get(),
-            "v_max": self.v_max.get(),
+            constants.H_MIN: self.h_min.get(),
+            constants.H_MAX: self.h_max.get(),
+            constants.S_MIN: self.s_min.get(),
+            constants.S_MAX: self.s_max.get(),
+            constants.V_MIN: self.v_min.get(),
+            constants.V_MAX: self.v_max.get(),
         }
         if hasattr(self, "camera_controller"):
             self.camera_controller.update_hsv(hsv_values)
