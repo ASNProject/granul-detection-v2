@@ -59,7 +59,7 @@ pipreqs project_name --force (Jika mau update)
 
 ## Screenshoot
 <p align="center">
-  <img src="assets/screenshoot/beranda.png" alt="Preview 1" width="30%" />
-  <img src="assets/screenshoot/setting.png" alt="Preview 2" width="30%" />
-  <img src="assets/screenshoot/tentang.png" alt="Preview 3" width="30%" />
+  <img src="assets/screenshoot/beranda.png" alt="Preview 1" width="100%" />
+  <img src="assets/screenshoot/setting.png" alt="Preview 2" width="100%" />
+  <img src="assets/screenshoot/tentang.png" alt="Preview 3" width="100%" />
 </p>
