@@ -1,4 +1,10 @@
 {
     "PORT": "COM7",
-    "BAUDRATE": "9600"
+    "BAUDRATE": "9600",
+    "H_MIN": 0,
+    "H_MAX": 179,
+    "S_MIN": 101,
+    "S_MAX": 255,
+    "V_MIN": 188,
+    "V_MAX": 255
 }

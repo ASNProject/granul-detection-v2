@@ -37,3 +37,6 @@ DEFAULT_JSON = {
 
 # Field order dan label untuk form
 FORM_FIELDS = ["PORT", "BAUDRATE"]
+
+# Editable fields
+EDITABLE_FIELDS = ["PORT", "BAUDRATE"]

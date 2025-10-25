@@ -16,15 +16,17 @@ import tkinter as tk
 from .create_rounded_entry import create_rounded_entry
 
 class FormBuilder:
-    def __init__(self, parent, data, fields=None):
+    def __init__(self, parent, data, fields=None, editable_fields=None):
         """
         parent : parent widget
         data : dictionary berisi data JSON
         fields : list urutan field yang ingin ditampilkan
+        editable : boolean, apakah form bisa diedit atau tidak
         """
         self.parent = parent
         self.data = data
         self.fields = fields or list(data.keys())
+        self.editable_fields = editable_fields or self.fields
         self.entries = {}
         self.build_form()
 
@@ -34,16 +36,21 @@ class FormBuilder:
 
         for i, key in enumerate(self.fields):
             value = self.data.get(key, "")
-            lbl = tk.Label(self.form_frame, text=key.capitalize(), anchor="w", width=10)
+            lbl = tk.Label(self.form_frame, text=key.capitalize(), anchor="w", width=6)
             lbl.grid(row=i, column=0, sticky="w")
 
-            entry_frame, entry = create_rounded_entry(self.form_frame, width=15)
+            entry_frame, entry = create_rounded_entry(self.form_frame, width=10)
             entry_frame.grid(row=i, column=1, sticky="ew")
 
             entry.insert(0, str(value))
+
+            if key not in self.editable_fields:
+                entry.config(state="readonly")
+
             self.entries[key] = entry
         
     def get_form_data(self):
         for key, entry in self.entries.items():
-            self.data[key] = entry.get()
+            if entry.cget("state") != "readonly":
+                self.data[key] = entry.get()
         return self.data
