@@ -19,6 +19,7 @@ from views.widgets import form
 from controllers.camera_controller import CameraController
 from controllers.hsv_filter_controller import HSVFilterController
 from controllers.shape_detector_controller import ShapeDetector
+from controllers.mode_controller import ModeController
 import cv2
 from PIL import Image, ImageTk
 import os
@@ -53,6 +54,19 @@ class SettingsPage(tk.Frame):
         )
         self.form.form_frame.pack(side="left", fill="both", expand=True, padx=(0, 10))
 
+        # Radio Button 
+        self.radio_container = tk.Frame(self.form.form_frame)
+        self.radio_container.grid(row=999, column=0, columnspan=2, sticky="ew", pady=(10, 0))
+
+        self.radio_frame = tk.LabelFrame(self.radio_container, text="Algoritma", padx=10, pady=5)
+        self.radio_frame.pack(fill="x")
+
+        default_mode = self.data.get(constants.MODE, constants.NAIVE_BAYES)
+        self.radio_var = tk.StringVar(value=default_mode)
+
+        tk.Radiobutton(self.radio_frame, text=constants.NAIVE_BAYES, variable=self.radio_var, value=constants.NAIVE_BAYES).pack(anchor="w")
+        tk.Radiobutton(self.radio_frame, text=constants.RANDOM_FOREST, variable=self.radio_var, value=constants.RANDOM_FOREST).pack(anchor="w")
+
         # Right: Camera Preview
         self._init_camera_section(content_frame)
 
@@ -86,6 +100,7 @@ class SettingsPage(tk.Frame):
 
     def save_data(self):
         update_data = self.form.get_form_data()
+        update_data[constants.MODE] = self.radio_var.get()
         # Konfirmasi data
         confirm = messagebox.askyesno("Konfirmasi", "Apakah anda yakin ingin menyimpan perubahan?")
 

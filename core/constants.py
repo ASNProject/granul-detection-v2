@@ -59,3 +59,8 @@ SATURATION_MIN="Saturation Min"
 SATURATION_MAX="Saturation Max"
 VALUE_MIN="Value Min"
 VALUE_MAX="Value Max"
+
+# Algoritma Deteksi
+MODE="MODE"
+NAIVE_BAYES = "Naive Bayes"
+RANDOM_FOREST = "Random Forest"
