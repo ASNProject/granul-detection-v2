@@ -15,12 +15,15 @@
 -->
 
 # 📦 Project Name  
-Deskripsi singkat tentang proyek ini.
+Aplikasi Klasifikasi Kualitas Granul merupakan sistem berbasis Machine Learning
+yang dirancang untuk mengidentifikasi dan mengklasifikasikan kualitas granul
+berdasarkan parameter sudut diam dan waktu pengujian. Aplikasi ini berfungsi untuk membantu proses analisis dalam penentuan kualitas granul secara otomatis dan akurat, yang sebelumnya dilakukan secara manual. Sistem ini dikembangkan sebagai hasil kolaborasi penelitian antara Program Magister Magister Teknik Elektro dan Fakultas Farmasi Universitas Ahmad Dahlan (UAD).Tujuannya adalah untuk mengintegrasikan kecerdasan buatan dalam bidang farmasi, khususnya dalam pengendalian mutu bahan granul. Dengan menggunakan model pembelajaran mesin, aplikasi mampu mendeteksi dan mengklasifikasikan kualitas granul menjadi beberapa kategori berdasarkan data yang diperoleh dari hasil pengukuran sudut diam serta durasi waktu pengujian."
 
 ## ✨ Features  
-- Struktur modular berbasis **MVC**  
-- Widget Tkinter yang bisa digunakan ulang  
-- Konfigurasi global yang mudah diatur  
+- [X] Realtime Camera Preview
+- [ ] Result Classification 
+- [X] Setting Configuration
+- [X] About Application 
 
 ## ⚙️ Installation & 🚀 Usage 
 - Clone Project
@@ -53,3 +56,10 @@ pip install pipreqs
 pipreqs . --force
 pipreqs project_name --force (Jika mau update)
 ```
+
+## Screenshoot
+<p align="center">
+  <img src="assets/screenshoot/beranda.png" alt="Preview 1" width="30%" />
+  <img src="assets/screenshoot/setting.png" alt="Preview 2" width="30%" />
+  <img src="assets/screenshoot/tentang.png" alt="Preview 3" width="30%" />
+</p>
