@@ -69,7 +69,6 @@ class HSVFilterController:
             with open(JSON_FILE, "w") as f:
                 json.dump(data, f, indent=4)
 
-            print("[INFO] HSV values disimpan ke JSON")
         except Exception as e:
             print(f"[ERROR] Gagal menyimpan HSV ke JSON: {e}")
 

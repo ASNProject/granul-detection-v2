@@ -66,6 +66,18 @@ class SettingsPage(tk.Frame):
 
         tk.Radiobutton(self.radio_frame, text=constants.NAIVE_BAYES, variable=self.radio_var, value=constants.NAIVE_BAYES).pack(anchor="w")
         tk.Radiobutton(self.radio_frame, text=constants.RANDOM_FOREST, variable=self.radio_var, value=constants.RANDOM_FOREST).pack(anchor="w")
+        
+        self.overlay_frame = tk.LabelFrame(self.radio_container, text="Overlay Box", padx=10, pady=5)
+        self.overlay_frame.pack(fill="x")
+        
+        self.overlay_var = tk.BooleanVar(value=self.data.get(constants.APPLY_OVERLAY, False))
+        tk.Checkbutton(
+            self.overlay_frame,
+            text="Gunakan Mode Overlay",
+            variable=self.overlay_var,
+            onvalue=True,
+            offvalue=False
+        ).pack(anchor="w")
 
         # Right: Camera Preview
         self._init_camera_section(content_frame)
@@ -101,6 +113,7 @@ class SettingsPage(tk.Frame):
     def save_data(self):
         update_data = self.form.get_form_data()
         update_data[constants.MODE] = self.radio_var.get()
+        update_data[constants.APPLY_OVERLAY] = self.overlay_var.get()
         # Konfirmasi data
         confirm = messagebox.askyesno("Konfirmasi", "Apakah anda yakin ingin menyimpan perubahan?")
 

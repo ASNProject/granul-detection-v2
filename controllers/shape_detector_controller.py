@@ -30,7 +30,7 @@ class ShapeDetector:
             epsilon = 0.04 * cv2.arcLength(contour, True)
             approx = cv2.approxPolyDP(contour, epsilon, True)
 
-            if len(approx) == 3:
+            if len(approx) == 3 and cv2.contourArea(contour) > 500:
                 area = cv2.contourArea(contour)
                 if area > max_area:
                     max_area = area
@@ -55,7 +55,7 @@ class ShapeDetector:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
             cv2.putText(result, f"Sudut: {angle_degrees:.2f}°", (x, y - 60),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-            cv2.putText(result, "Segitiga", (x, y - 80),
+            cv2.putText(result, "Granul", (x, y - 80),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         return result

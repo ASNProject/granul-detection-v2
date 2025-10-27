@@ -15,6 +15,14 @@
 import platform
 import cv2
 from PIL import Image, ImageTk
+from core import constants
+import os
+import json
+import numpy as np
+from controllers.shape_detector_controller import ShapeDetector
+
+ASSETS_FOLDER = constants.ASSETS
+JSON_FILE = os.path.join(ASSETS_FOLDER, constants.SETTING_FILE)
 
 class CameraController:
     def __init__(self, target_label, target_frame):
@@ -26,6 +34,7 @@ class CameraController:
         self.target_frame = target_frame
         self.cap = None
         self.running = False
+        self.apply_overlay = True  
     
     def start_camera(self):
         """Mulai loop kamera setelah GUI siap"""
@@ -54,9 +63,25 @@ class CameraController:
 
         # Ambil frame dari kamera
         ret, frame = self.cap.read()
+        config = self.load_json_config(JSON_FILE)
         if not ret:
             self.target_label.after(100, self.update_camera_frame)
             return
+        
+        if config.get("APPLY_OVERLAY", True):
+            if self.apply_overlay:
+                if config:
+                    lower_hsv = np.array([
+                        config.get("H_MIN", 0),
+                        config.get("S_MIN", 0),
+                        config.get("V_MIN", 0)
+                    ])
+                    upper_hsv = np.array([
+                        config.get("H_MAX", 179),
+                        config.get("S_MAX", 255),
+                        config.get("V_MAX", 255)
+                    ])
+                    frame = ShapeDetector.detect_largest_triangle_overlay(frame, lower_hsv, upper_hsv)
 
         # Konversi warna BGR → RGB
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -89,3 +114,18 @@ class CameraController:
         if self.cap and self.cap.isOpened():
             self.cap.release()
         self.target_label.config(image="")
+
+    @staticmethod
+    def load_json_config(path):
+        """Baca file JSON untuk konfigurasi HSV"""
+        try:
+            with open(path, "r") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"[ERROR] Gagal load konfigurasi dari {path}: {e}")
+            return {}
+
+    def update_hsv(self, hsv_values):
+        """Method dummy agar tidak error ketika dipanggil dari SettingsPage.
+        Tidak menyimpan apa pun karena CameraController hanya membaca konfigurasi dari JSON."""
+        pass

@@ -16,6 +16,15 @@ import tkinter as tk
 from controllers.camera_controller import CameraController
 from controllers.detection_controller import DetectionController
 from core import constants
+from controllers.shape_detector_controller import ShapeDetector
+import numpy as np
+import cv2
+from PIL import Image, ImageTk
+import os
+import json
+
+ASSETS_FOLDER = constants.ASSETS
+JSON_FILE = os.path.join(ASSETS_FOLDER, constants.SETTING_FILE)
 
 class HomePage(tk.Frame):
     def __init__(self, parent, root):
@@ -38,7 +47,7 @@ class HomePage(tk.Frame):
         self.camera_label.pack(fill="both", expand=True, padx=10, pady=10)
 
         self.camera_controller = CameraController(self.camera_label, left_frame)
-        self.after(1000, self.camera_controller.start_camera)
+        self.after(500, self.camera_controller.start_camera)
         self.protocol = getattr(self.root, "on_close", lambda: None)
 
         # Frame kanan

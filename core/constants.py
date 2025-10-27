@@ -64,3 +64,5 @@ VALUE_MAX="Value Max"
 MODE="MODE"
 NAIVE_BAYES = "Naive Bayes"
 RANDOM_FOREST = "Random Forest"
+
+APPLY_OVERLAY = "APPLY_OVERLAY"

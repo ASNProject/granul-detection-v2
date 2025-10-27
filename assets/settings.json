@@ -7,5 +7,6 @@
     "S_MAX": 255,
     "V_MIN": 188,
     "V_MAX": 255,
-    "MODE": "Naive Bayes"
+    "MODE": "Naive Bayes",
+    "APPLY_OVERLAY": false
 }
